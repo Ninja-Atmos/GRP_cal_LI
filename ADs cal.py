@@ -1,3 +1,5 @@
+#GUI Calculator Creted By Suvam. Its Help To Calculate ADs team per week top 10 person bonus. 
+
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import messagebox
