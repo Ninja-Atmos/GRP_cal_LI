@@ -40,6 +40,9 @@ class GRPAdsBonusCalculator:
         self.calculate_button = ctk.CTkButton(self.button_frame, text="Calculate", font=("Arial", 14), command=self.calculate_amount)
         self.calculate_button.pack(side=tk.LEFT, fill="x", expand=True, padx=10)
 
+        self.copy_button = ctk.CTkButton(self.button_frame, text="Copy Amount", font=("Arial", 14), command=self.copy_amount)
+        self.copy_button.pack(side=tk.LEFT, fill="x", expand=True, padx=10)
+
         self.run_again_button = ctk.CTkButton(self.button_frame, text="Run again", font=("Arial", 14), command=self.run_again)
         self.run_again_button.pack(side=tk.LEFT, fill="x", expand=True, padx=10)
 
@@ -59,9 +62,16 @@ class GRPAdsBonusCalculator:
             else:
                 messagebox.showerror("Invalid choice", "Please select an option")
                 return
-            self.total_amount_label.configure(text=f"Total Amount is: {total_amount}")
+            self.total_amount_label.configure(text=f"{total_amount}")  # Only show the amount
         except ValueError:
             messagebox.showerror("Invalid input", "Please enter a valid number of ADs")
+
+    def copy_amount(self):
+        amount_text = self.total_amount_label.cget("text")
+        if amount_text:
+            self.root.clipboard_clear()  # Clear the clipboard
+            self.root.clipboard_append(amount_text)  # Append only the total amount to the clipboard
+        #  popup notifications removed
 
     def run_again(self):
         self.total_ads_entry.delete(0, tk.END)
